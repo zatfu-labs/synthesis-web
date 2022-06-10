@@ -9,4 +9,12 @@ router.get('/', function(req, res, next) {
   });
 });
 
+router.get('/signin', function(req, res, next) {
+  res.render('signin', {
+    layout: 'layouts/layout1',
+    title: "Sign In"
+  });
+});
+
+
 module.exports = router;
