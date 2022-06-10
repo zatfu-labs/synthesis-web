@@ -9,18 +9,4 @@ router.get('/', function(req, res, next) {
   });
 });
 
-router.get('/project-list', function(req, res, next) {
-  res.render('project', {
-    layout: 'layouts/main',
-    title: "Project List"
-  });
-});
-
-router.get('/about', function(req, res, next) {
-  res.render('about', {
-    layout: 'layouts/main',
-    title: "About Team"
-  });
-});
-
 module.exports = router;
