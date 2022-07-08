@@ -12,14 +12,14 @@ const { notAuthenticated, captchaLogin, captchaRegister } = require('../lib/auth
 
 router.get('/', notAuthenticated, (req, res) => {
     res.render('login', {
-        layout: 'layouts/main'
+        layout: false
     });
 });
 
 router.get('/login', notAuthenticated, recaptcha.middleware.render, (req, res) => {
     res.render('login', {
         recaptcha: res.recaptcha,
-        layout: 'layouts/main'
+        layout: false
     });
 });
 
@@ -34,7 +34,7 @@ router.post('/login', recaptcha.middleware.verify, captchaLogin, async(req, res,
 router.get('/register', notAuthenticated, recaptcha.middleware.render, (req, res) => {
     res.render('register', {
         recaptcha: res.recaptcha,
-        layout: 'layouts/main'  
+        layout: false  
     });
 });
 

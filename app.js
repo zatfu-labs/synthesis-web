@@ -35,6 +35,7 @@ app.use(limiter);
 app.set('view engine', 'ejs');
 app.use(expressLayout);
 app.use(express.static('public'));
+app.use(logger('dev'))
 
 app.use(session({
   secret: 'secret',  
@@ -69,6 +70,19 @@ app.get('/', (req, res) => {
   });
 });
 
+app.get('/about', (req, res) => {
+  res.render('about', {
+    layout: 'layouts/main'
+  });
+});
+
+app.get('/test', (req, res) => {
+  res.render('test', {
+    recaptcha: res.recaptcha,
+    layout: false
+  })
+})
+
 app.get('/docs', isAuthenticated, async (req, res) => { 
   let getkey = await getApikey(req.user.id)
   let { apikey, username } = getkey
@@ -78,18 +92,6 @@ app.get('/docs', isAuthenticated, async (req, res) => {
     layout: 'layouts/main'
   });
 });
-
-app.get('/price', (req, res) => {
-  res.render('buyFull', {
-    layout: 'layouts/main'
-  })
-})
-
-app.get('/premium', (req, res) => {
-  res.render('buyFull', {
-    layout: 'layouts/main'
-  })
-})
 
 app.use('/users', userRouters);
 app.use(function (req, res, next) {
