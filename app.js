@@ -83,6 +83,10 @@ app.get('/test', (req, res) => {
   })
 })
 
+app.get('/wanjay', (req, res) => {
+  res.send("user " + req.headers["user-agent"]);
+})
+
 app.get('/docs', isAuthenticated, async (req, res) => { 
   let getkey = await getApikey(req.user.id)
   let { apikey, username } = getkey
