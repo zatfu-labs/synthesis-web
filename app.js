@@ -10,7 +10,7 @@ const MemoryStore = require('memorystore')(session);
 const compression = require('compression');
 const logger = require('morgan');
 
-// const apiRouters = require('./routes/api');
+ const apiRouters = require('./routes/api');
 const userRouters = require('./routes/users');
 
 const { isAuthenticated } = require('./lib/auth');
@@ -83,10 +83,6 @@ app.get('/test', (req, res) => {
   })
 })
 
-app.get('/wanjay', (req, res) => {
-  res.send("user " + req.headers["user-agent"]);
-})
-
 app.get('/docs', isAuthenticated, async (req, res) => { 
   let getkey = await getApikey(req.user.id)
   let { apikey, username } = getkey
@@ -97,7 +93,9 @@ app.get('/docs', isAuthenticated, async (req, res) => {
   });
 });
 
+app.use('/api', apiRouters)
 app.use('/users', userRouters);
+
 app.use(function (req, res, next) {
   if (res.statusCode == '200') {
     res.render('notfound', {
