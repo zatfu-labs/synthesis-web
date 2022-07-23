@@ -154,4 +154,56 @@ async function quotenime(req, res) {
     });
 }
 
-module.exports = {cakLontong, quotes, bijak, fakta, ptl, motivasi, quotenime };
+async function loli(req, res) {
+  const apikey = req.query.apikey;
+  if (apikey === undefined)
+    return res.status(404).send({
+      status: 404,
+      message: `Input Parameter apikey`,
+    });
+  const check = await cekKey(apikey);
+  if (!check)
+    return res.status(403).send({
+      status: 403,
+      message: `apikey ${apikey} not found, please register first!`,
+    });
+  readFileJson("./lib/data/loli.json")
+    .then((resul) => {
+      res.status(200).send({
+        status: 200,
+        result: resul
+      });
+    })
+    .catch((error) => {
+      console.log(error);
+      res.status(500).send({ status: 500, message: "Internal Server Error" });
+    });
+}
+
+async function husbu(req, res) {
+  const apikey = req.query.apikey;
+  if (apikey === undefined)
+    return res.status(404).send({
+      status: 404,
+      message: `Input Parameter apikey`,
+    });
+  const check = await cekKey(apikey);
+  if (!check)
+    return res.status(403).send({
+      status: 403,
+      message: `apikey ${apikey} not found, please register first!`,
+    });
+  readFileJson("./lib/data/husbu.json")
+    .then((resul) => {
+      res.status(200).send({
+        status: 200,
+        result: resul,
+      });
+    })
+    .catch((error) => {
+      console.log(error);
+      res.status(500).send({ status: 500, message: "Internal Server Error" });
+    });
+}
+
+module.exports = {cakLontong, quotes, bijak, fakta, ptl, motivasi, quotenime, husbu, loli };
