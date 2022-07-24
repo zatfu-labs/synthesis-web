@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { cekKey } = require('../database/db'); 
 const { youtubePlay, youtubeMp4, youtubeMp3 } = require('../controllers/yt');
-const { cakLontong, bijak, quotes, fakta, ptl, motivasi, quotenime, husbu, loli } = require('../controllers/randomtext');
+const { cakLontong, bijak, quotes, fakta, motivasi, quotenime, husbu, loli } = require('../controllers/randomtext');
 
 router.get('/checkkey', async (req, res) => {
     const apikey = req.query.apikey;
@@ -34,12 +34,17 @@ router.get('/fakta', fakta);
 
 router.get('/bijak', bijak);
 
-router.get('/ptl', ptl);
-
 router.get('/motivasi', motivasi);
 
 router.get('/loli', loli);
 
 router.get('/husbu', husbu)
+
+router.get('*', async (req, res) => {
+    return res.status(404).send({
+      status: 404,
+      message: `Invalid API URL :)`,
+    });
+})
 
 module.exports = router;

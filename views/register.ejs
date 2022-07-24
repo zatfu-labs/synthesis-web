@@ -27,12 +27,16 @@
     <%- include('layouts/errors')  %> 
       <form method="post" action="/users/register">
         <div class="form-floating">
-          <input type="text" name="username" class="form-control" id="floatingInput"/>
+          <input type="text" name="username" class="form-control" id="floatingInput" required/>
           <label for="floatingInput">Username</label>
         </div>
         <div class="form-floating">
-          <input type="password" name="password" class="form-control" id="floatingPassword"/>
+          <input type="password" name="password" class="form-control" id="floatingPassword" required/>
           <label for="floatingPassword">Password</label>
+        </div>
+        <div class="form-floating">
+          <input type="password" name="confirmPassword" class="form-control" id="floatingInput" required/>
+          <label for="floatingPassword">Confirm Password</label>
         </div>
 		<div>
         <%- recaptcha %>
