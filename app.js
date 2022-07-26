@@ -10,7 +10,8 @@ const MemoryStore = require('memorystore')(session);
 const compression = require('compression');
 const logger = require('morgan');
 
- const apiRouters = require('./routes/api');
+const directRouters = require('./routes/direct');
+const apiRouters = require('./routes/api');
 const userRouters = require('./routes/users');
 
 const { isAuthenticated } = require('./lib/auth');
@@ -93,7 +94,8 @@ app.get('/docs', isAuthenticated, async (req, res) => {
   });
 });
 
-app.use('/api', apiRouters)
+app.use('/direct', directRouters);
+app.use('/api', apiRouters);
 app.use('/users', userRouters);
 
 app.use(function (req, res, next) {
@@ -114,5 +116,5 @@ app.get('*', function(req, res, next){
 app.set('json spaces', 4);
 
 app.listen(PORT, () => {
-  console.log(`App listening at http://localhost:${PORT}`);
+  console.log(`[INFO] App listening at http://localhost:${PORT}`);
 });
