@@ -14,6 +14,7 @@ const directRouters = require('./routes/direct');
 const apiRouters = require('./routes/api');
 const userRouters = require('./routes/users');
 
+const visitor = require('./database/visitsUp');
 const { isAuthenticated } = require('./lib/auth');
 const { connectMongoDb } = require('./database/connect');
 const { getApikey } = require('./database/db');
@@ -23,14 +24,15 @@ const PORT = process.env.PORT || 3000;
 
 connectMongoDb();
 
-app.set('trust proxy', 1);
-app.use(compression())
-
 const limiter = rateLimit({
   windowMs: 1 * 60 * 1000, 
   max: 2000, 
   message: 'Oops too many requests'
 });
+
+app.set("trust proxy", 1);
+app.use(compression());
+
 app.use(limiter);
 
 app.set('view engine', 'ejs');
@@ -78,6 +80,7 @@ app.get('/about', (req, res) => {
 });
 
 app.get('/test', (req, res) => {
+  visitor.siteViewsUp();
   res.render('test', {
     recaptcha: res.recaptcha,
     layout: false
@@ -104,7 +107,7 @@ app.use(function (req, res, next) {
       layout: 'layouts/main'
     });
   }
-});
+}); 
 
 app.get('*', function(req, res, next){
   res.render('error', {
