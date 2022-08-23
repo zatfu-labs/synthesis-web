@@ -80,7 +80,7 @@ app.get('/about', (req, res) => {
 });
 
 app.get('/test', (req, res) => {
-  visitor.siteViewsUp();
+  // visitor.siteViewsUp();
   res.render('test', {
     recaptcha: res.recaptcha,
     layout: false
@@ -93,7 +93,7 @@ app.get('/docs', isAuthenticated, async (req, res) => {
   res.render('docs', {
     username: username,
     apikey: apikey,
-    layout: 'layouts/main'
+    layout: false
   });
 });
 
@@ -103,7 +103,7 @@ app.use('/users', userRouters);
 
 app.use(function (req, res, next) {
   if (res.statusCode == '200') {
-    res.render('notfound', {
+    res.render('notFound', {
       layout: 'layouts/main'
     });
   }
