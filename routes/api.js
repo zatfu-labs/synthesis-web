@@ -3,6 +3,7 @@ const router = express.Router();
 const { cekKey } = require('../database/db'); 
 const { youtubePlay, youtubeMp4, youtubeMp3 } = require('../controllers/yt');
 const { cakLontong, bijak, quotes, fakta, motivasi, quotenime, husbu, loli } = require('../controllers/randomtext');
+const Scraper = require('../controllers/scraper/index');
 
 router.get('/checkkey', async (req, res) => {
     const apikey = req.query.apikey;
@@ -23,6 +24,8 @@ router.get('/ytplay', youtubePlay);
 router.get('/ytmp4', youtubeMp4);
 
 router.get('/ytmp3', youtubeMp3);
+
+router.get('/ghinfo', Scraper.Github.userInfo);
 
 router.get('/caklontong', cakLontong);
 

@@ -3,6 +3,11 @@
   src: url("/fonts/Gilroy.otf");
 }
 
+@font-face {
+  font-family: Futura;
+  src: url("/fonts/futura-mid.tff")
+}
+
 .cusfont {
   font-family: gilroy;
 }
