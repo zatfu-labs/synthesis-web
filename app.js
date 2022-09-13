@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const expressLayout = require('express-ejs-layouts');
 const rateLimit = require("express-rate-limit");
 const passport = require('passport');
+const helmet = require("helmet");
 const flash = require('connect-flash');
 const MemoryStore = require('memorystore')(session);
 const compression = require('compression');
@@ -31,6 +32,7 @@ const limiter = rateLimit({
 });
 
 app.set("trust proxy", 1);
+
 app.use(compression());
 
 app.use(limiter);
@@ -104,7 +106,7 @@ app.use('/users', userRouters);
 app.use(function (req, res, next) {
   if (res.statusCode == '200') {
     res.render('notFound', {
-      layout: 'layouts/main'
+      layout: false
     });
   }
 }); 

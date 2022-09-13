@@ -41,17 +41,18 @@ li i.cusfont a {
 
 .btn-outline-gradient {
   font-family: gilroy;
+  margin: auto;
   padding: 0.25rem 1.25rem;
   font-size: 18px;
   --font-variation-weight: 700;
   border-radius: 1.875rem;
   text-decoration: none;
-  position: relative;
+  position: sticky;
   border: none;
   background-color: transparent;
   display: block;
   transform: 0.5s;
-  width: auto !important;
+  width: 45% !important;
   border-radius: 2.5rem;
 }
 
