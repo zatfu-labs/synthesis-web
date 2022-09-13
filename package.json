@@ -3,10 +3,12 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node app"
+    "start": "node app",
+    "dev": "start http://localhost:3000/ && nodemon app"
   },
   "dependencies": {
     "axios": "^0.27.2",
+    "cheerio": "^1.0.0-rc.12",
     "compression": "^1.7.4",
     "connect-flash": "^0.1.1",
     "cookie-parser": "~1.4.4",
@@ -17,12 +19,15 @@
     "express-rate-limit": "^6.4.0",
     "express-recaptcha": "^5.1.0",
     "express-session": "^1.17.3",
+    "faker": "^6.6.6",
     "fs-extra": "^10.1.0",
     "http-errors": "~1.6.3",
     "memorystore": "^1.6.7",
     "moment-timezone": "^0.5.34",
     "mongoose": "^6.3.6",
     "morgan": "~1.9.1",
+    "needle": "^3.1.0",
+    "node-fetch": "^2.6.1",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "yt-search": "^2.10.3",
