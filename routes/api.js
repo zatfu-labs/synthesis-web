@@ -28,6 +28,8 @@ router.get('/ytmp3', youtubeMp3);
 
 router.get('/ghinfo', Scraper.Github.userInfo);
 
+router.get('/weather', Scraper.Weather.weather);
+
 router.get('/caklontong', cakLontong);
 
 router.get('/quotenime', quotenime);
