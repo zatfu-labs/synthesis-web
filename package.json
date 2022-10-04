@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node app",
-    "dev": "start http://localhost:3000/ && nodemon app"
+    "dev": "nodemon app"
   },
   "dependencies": {
     "axios": "^0.27.2",
