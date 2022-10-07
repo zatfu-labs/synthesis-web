@@ -40,6 +40,7 @@ router.get("/iplookup", Scraper.Iplookup.iplookup);
 router.get("/hilih", Scraper.Word.Hilih)
 router.get("/halah", Scraper.Word.Halah);
 router.get("/gempa", Scraper.Bmkg.Gempa)
+router.get("/pinterest", Scraper.Pinterest.Search)
 router.get("/caklontong", cakLontong);
 router.get("/quotenime", quotenime);
 router.get("/quotes", quotes);
