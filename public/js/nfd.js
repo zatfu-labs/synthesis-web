@@ -4,4 +4,4 @@ function timetodirect() {
   }, 1000 * 15);
 }
 
-timetodirect();
+// timetodirect();

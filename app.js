@@ -1,3 +1,4 @@
+require("./config")
 const express = require('express');
 const app = express();
 const session = require('express-session');
@@ -5,7 +6,6 @@ const cookieParser = require('cookie-parser');
 const expressLayout = require('express-ejs-layouts');
 const rateLimit = require("express-rate-limit");
 const passport = require('passport');
-const helmet = require("helmet");
 const flash = require('connect-flash');
 const MemoryStore = require('memorystore')(session);
 const compression = require('compression');
@@ -19,9 +19,6 @@ const visitor = require('./database/visitsUp');
 const { isAuthenticated } = require('./lib/auth');
 const { connectMongoDb } = require('./database/connect');
 const { getApikey } = require('./database/db');
-const { port } = require('./lib/settings');
-
-const PORT = process.env.PORT || 3000;
 
 connectMongoDb();
 
@@ -32,9 +29,8 @@ const limiter = rateLimit({
 });
 
 app.set("trust proxy", 1);
-
+app.disable("x-powered-by");
 app.use(compression());
-
 app.use(limiter);
 
 app.set('view engine', 'ejs');
