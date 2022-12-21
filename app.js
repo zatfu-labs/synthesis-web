@@ -1,4 +1,3 @@
-const {PORT} = require('./config');
 const express = require('express');
 const app = express();
 const session = require('express-session');
@@ -11,6 +10,7 @@ const MemoryStore = require('memorystore')(session);
 const compression = require('compression');
 const logger = require('morgan');
 
+const indexRouters = require('./routes/index');
 const directRouters = require('./routes/direct');
 const apiRouters = require('./routes/api');
 const userRouters = require('./routes/users');
@@ -61,9 +61,7 @@ require('./lib/config')(passport);
 app.use(flash());
 
 app.use((req, res, next) => {
-	// eslint-disable-next-line camelcase
 	res.locals.success_msg = req.flash('success_msg');
-	// eslint-disable-next-line camelcase
 	res.locals.error_msg = req.flash('error_msg');
 	res.locals.error = req.flash('error');
 	res.locals.user = req.user || null;
@@ -82,13 +80,6 @@ app.get('/about', (req, res) => {
 	});
 });
 
-app.get('/test', (req, res) => {
-	res.render('test', {
-		recaptcha: res.recaptcha,
-		layout: false,
-	});
-});
-
 app.get('/docs', isAuthenticated, async (req, res) => {
 	const getkey = await getApikey(req.user.id);
 	const {apikey, username} = getkey;
@@ -99,9 +90,10 @@ app.get('/docs', isAuthenticated, async (req, res) => {
 	});
 });
 
-app.use('/direct', directRouters);
+app.use('/', indexRouters);
 app.use('/api', apiRouters);
 app.use('/users', userRouters);
+app.use('/direct', directRouters);
 
 app.use((req, res) => {
 	if (res.statusCode === '200') {
@@ -120,6 +112,6 @@ app.get('*', (req, res) => {
 
 app.set('json spaces', 4);
 
-app.listen(PORT, () => {
-	console.log(`[INFO] App listening at http://localhost:${PORT}`);
+app.listen(process.env.PORT, () => {
+	console.log(`[INFO] App listening at http://localhost:${process.env.PORT}`);
 });
