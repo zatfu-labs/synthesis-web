@@ -1,5 +1,4 @@
 const express = require('express');
-// eslint-disable-next-line new-cap
 const router = express.Router();
 const {cekKey} = require('../database/db');
 const {youtubePlay, youtubeMp4, youtubeMp3} = require('../controllers/yt');

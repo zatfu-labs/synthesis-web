@@ -1,10 +1,8 @@
 const express = require('express');
-// eslint-disable-next-line new-cap
 const router = express.Router();
 const passport = require('passport');
 
-// eslint-disable-next-line camelcase
-const {recaptcha_key_1, recaptcha_key_2} = require('../lib/settings');
+const {recaptcha_key_1, recaptcha_key_2} = require('../config');
 const Recaptcha = require('express-recaptcha').RecaptchaV2;
 const recaptcha = new Recaptcha(recaptcha_key_1, recaptcha_key_2);
 
