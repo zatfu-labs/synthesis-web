@@ -1,34 +1,38 @@
-const { limitCount } = require('../lib/settings');
-const { User } = require('./model');
+const {limitCount} = require('../config');
+const {User} = require('./model');
 
-    async function addUser(username, password, apikey) {
-        let obj = { username, password, apikey, defaultKey: apikey, premium: [], limit: limitCount };
-        User.create(obj);
-    }
-    module.exports.addUser = addUser
+async function addUser(username, password, apikey) {
+	const obj = {username, password, apikey, defaultKey: apikey, premium: [], limit: limitCount};
+	User.create(obj);
+}
 
-    async function checkUsername(username) {
-        let users = await User.findOne({username: username});
-        if(users !== null) {
-            return users.username;
-        } else {
-            return false;
-        }
-    }
-    module.exports.checkUsername = checkUsername;
+module.exports.addUser = addUser;
 
-    async function getApikey(id) {
-        let users = await User.findOne({_id: id});
-        return {apikey: users.apikey, username: users.username};
-    }
-    module.exports.getApikey = getApikey;
+async function checkUsername(username) {
+	const users = await User.findOne({username});
+	if (users !== null) {
+		return users.username;
+	}
 
-    async function cekKey(apikey) {
-        let db = await User.findOne({apikey: apikey});
-        if(db === null) {
-            return false;
-        } else {
-            return db.apikey;
-        }
-    }
-    module.exports.cekKey = cekKey;
+	return false;
+}
+
+module.exports.checkUsername = checkUsername;
+
+async function getApikey(id) {
+	const users = await User.findOne({_id: id});
+	return {apikey: users.apikey, username: users.username};
+}
+
+module.exports.getApikey = getApikey;
+
+async function cekKey(apikey) {
+	const db = await User.findOne({apikey});
+	if (db === null) {
+		return false;
+	}
+
+	return db.apikey;
+}
+
+module.exports.cekKey = cekKey;
