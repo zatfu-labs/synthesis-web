@@ -13,7 +13,6 @@ const logger = require('morgan');
 const indexRouters = require('./routes/index');
 const directRouters = require('./routes/direct');
 const apiRouters = require('./routes/api');
-const userRouters = require('./routes/users');
 
 // eslint-disable-next-line no-unused-vars
 const visitor = require('./database/visitsUp');
@@ -92,7 +91,6 @@ app.get('/docs', isAuthenticated, async (req, res) => {
 
 app.use('/', indexRouters);
 app.use('/api', apiRouters);
-app.use('/users', userRouters);
 app.use('/direct', directRouters);
 
 app.use((req, res) => {
