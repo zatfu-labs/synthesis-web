@@ -13,5 +13,7 @@
         "ecmaVersion": "latest"
     },
     "rules": {
+        "new-cap":"off",
+        "camelcase":"off"
     }
 }
