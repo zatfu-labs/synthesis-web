@@ -14,12 +14,6 @@ const {
 	captchaRegister,
 } = require('../lib/auth');
 
-router.get('/', notAuthenticated, (req, res) => {
-	res.render('login', {
-		layout: false,
-	});
-});
-
 router.get(
 	'/login',
 	notAuthenticated,
