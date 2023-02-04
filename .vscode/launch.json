@@ -14,7 +14,7 @@
       "env": {
         "NODE_ENV": "development",
         "PORT": "3000",
-        "DBURL": "mongodb://admin:12345@cluster0-shard-00-00.iaiy0.mongodb.net:27017,cluster0-shard-00-01.iaiy0.mongodb.net:27017,cluster0-shard-00-02.iaiy0.mongodb.net:27017/myFirstDatabase?ssl=true&replicaSet=atlas-1vi0h2-shard-0&authSource=admin&retryWrites=true&w=majority"
+        "dbURI": "mongodb://admin:12345@cluster0-shard-00-00.iaiy0.mongodb.net:27017,cluster0-shard-00-01.iaiy0.mongodb.net:27017,cluster0-shard-00-02.iaiy0.mongodb.net:27017/myFirstDatabase?ssl=true&replicaSet=atlas-1vi0h2-shard-0&authSource=admin&retryWrites=true&w=majority"
       },
       "serverReadyAction": {
         "pattern": "[INFO] App listening at ([0-9]+)",
