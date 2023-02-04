@@ -36,7 +36,8 @@
   },
   "devDependencies": {
     "eslint": "^8.29.0",
-    "eslint-config-xo": "^0.43.1"
+    "eslint-config-xo": "^0.43.1",
+    "prettier": "^2.8.3"
   },
   "description": "MyFirst Project APIs ExpressJS",
   "main": "app.js",

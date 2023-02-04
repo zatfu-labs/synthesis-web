@@ -5,7 +5,7 @@ const base32 = require('base32');
     Function Experiment :D
 */
 const Base = (type, text) =>
-	new Promise(resolve => {
+	new Promise((resolve) => {
 		switch (type) {
 			case 'b64enc':
 				const data1 = base64.encode(text);

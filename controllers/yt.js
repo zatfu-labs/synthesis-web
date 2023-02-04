@@ -1,9 +1,9 @@
-const {ytPlay, ytMp3, ytMp4} = require('../lib/youtube');
-const {cekKey} = require('../database/db');
+const { ytPlay, ytMp3, ytMp4 } = require('../lib/youtube');
+const { cekKey } = require('../database/db');
 
 async function youtubePlay(req, res) {
-	const {query} = req.query;
-	const {apikey} = req.query;
+	const { query } = req.query;
+	const { apikey } = req.query;
 	if (query === undefined || apikey === undefined) {
 		return res.status(404).send({
 			status: 404,
@@ -19,20 +19,22 @@ async function youtubePlay(req, res) {
 		});
 	}
 
-	ytPlay(query).then(result => {
-		res.status(200).send({status: 200, result});
-	}).catch(error => {
-		console.log(error);
-		res.status(500).send({
-			status: 500,
-			message: 'Internal Server Error',
+	ytPlay(query)
+		.then((result) => {
+			res.status(200).send({ status: 200, result });
+		})
+		.catch((error) => {
+			console.log(error);
+			res.status(500).send({
+				status: 500,
+				message: 'Internal Server Error',
+			});
 		});
-	});
 }
 
 async function youtubeMp3(req, res) {
-	const {url} = req.query;
-	const {apikey} = req.query;
+	const { url } = req.query;
+	const { apikey } = req.query;
 	if (url === undefined || apikey === undefined) {
 		return res.status(404).send({
 			status: 404,
@@ -48,20 +50,22 @@ async function youtubeMp3(req, res) {
 		});
 	}
 
-	ytMp3(url).then(result => {
-		res.status(200).send({status: 200, result});
-	}).catch(error => {
-		console.log(error);
-		res.status(500).send({
-			status: 500,
-			message: 'Internal Server Error',
+	ytMp3(url)
+		.then((result) => {
+			res.status(200).send({ status: 200, result });
+		})
+		.catch((error) => {
+			console.log(error);
+			res.status(500).send({
+				status: 500,
+				message: 'Internal Server Error',
+			});
 		});
-	});
 }
 
 async function youtubeMp4(req, res) {
-	const {url} = req.query;
-	const {apikey} = req.query;
+	const { url } = req.query;
+	const { apikey } = req.query;
 	if (url === undefined || apikey === undefined) {
 		return res.status(404).send({
 			status: 404,
@@ -77,18 +81,20 @@ async function youtubeMp4(req, res) {
 		});
 	}
 
-	ytMp4(url).then(result => {
-		res.status(200).send({
-			status: 200,
-			result,
+	ytMp4(url)
+		.then((result) => {
+			res.status(200).send({
+				status: 200,
+				result,
+			});
+		})
+		.catch((error) => {
+			console.log(error);
+			res.status(500).send({
+				status: 500,
+				message: 'Internal Server Error',
+			});
 		});
-	}).catch(error => {
-		console.log(error);
-		res.status(500).send({
-			status: 500,
-			message: 'Internal Server Error',
-		});
-	});
 }
 
-module.exports = {youtubePlay, youtubeMp3, youtubeMp4};
+module.exports = { youtubePlay, youtubeMp3, youtubeMp4 };

@@ -1,15 +1,15 @@
-const {limitCount} = require('../config');
-const {User} = require('./model');
+const { limitCount } = require('../config');
+const { User } = require('./model');
 
 async function addUser(username, password, apikey) {
-	const obj = {username, password, apikey, defaultKey: apikey, premium: [], limit: limitCount};
+	const obj = { username, password, apikey, defaultKey: apikey, premium: [], limit: limitCount };
 	User.create(obj);
 }
 
 module.exports.addUser = addUser;
 
 async function checkUsername(username) {
-	const users = await User.findOne({username});
+	const users = await User.findOne({ username });
 	if (users !== null) {
 		return users.username;
 	}
@@ -20,14 +20,14 @@ async function checkUsername(username) {
 module.exports.checkUsername = checkUsername;
 
 async function getApikey(id) {
-	const users = await User.findOne({_id: id});
-	return {apikey: users.apikey, username: users.username};
+	const users = await User.findOne({ _id: id });
+	return { apikey: users.apikey, username: users.username };
 }
 
 module.exports.getApikey = getApikey;
 
 async function cekKey(apikey) {
-	const db = await User.findOne({apikey});
+	const db = await User.findOne({ apikey });
 	if (db === null) {
 		return false;
 	}

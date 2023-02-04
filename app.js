@@ -16,9 +16,9 @@ const apiRouters = require('./routes/api');
 
 // eslint-disable-next-line no-unused-vars
 const visitor = require('./database/visitsUp');
-const {isAuthenticated} = require('./lib/auth');
-const {connectMongoDb} = require('./database/connect');
-const {getApikey} = require('./database/db');
+const { isAuthenticated } = require('./lib/auth');
+const { connectMongoDb } = require('./database/connect');
+const { getApikey } = require('./database/db');
 
 connectMongoDb();
 
@@ -43,13 +43,13 @@ app.use(
 		secret: 'secret',
 		resave: true,
 		saveUninitialized: true,
-		cookie: {maxAge: 86400000},
+		cookie: { maxAge: 86400000 },
 		store: new MemoryStore({
 			checkPeriod: 86400000,
 		}),
-	}),
+	})
 );
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
 
@@ -81,7 +81,7 @@ app.get('/about', (req, res) => {
 
 app.get('/docs', isAuthenticated, async (req, res) => {
 	const getkey = await getApikey(req.user.id);
-	const {apikey, username} = getkey;
+	const { apikey, username } = getkey;
 	res.render('docs', {
 		username,
 		apikey,

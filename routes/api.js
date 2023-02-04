@@ -1,21 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const {cekKey} = require('../database/db');
-const {youtubePlay, youtubeMp4, youtubeMp3} = require('../controllers/yt');
-const {
-	cakLontong,
-	bijak,
-	quotes,
-	fakta,
-	motivasi,
-	quotenime,
-	husbu,
-	loli,
-} = require('../controllers/randomtext');
+const { cekKey } = require('../database/db');
+const { youtubePlay, youtubeMp4, youtubeMp3 } = require('../controllers/yt');
+const { cakLontong, bijak, quotes, fakta, motivasi, quotenime, husbu, loli } = require('../controllers/randomtext');
 const Scraper = require('../controllers/scraper/main');
 
 router.get('/checkkey', async (req, res) => {
-	const {apikey} = req.query;
+	const { apikey } = req.query;
 	if (apikey === undefined) {
 		return res.status(404).send({
 			status: 404,
@@ -31,7 +22,7 @@ router.get('/checkkey', async (req, res) => {
 		});
 	}
 
-	res.send({status: 200, apikey, response: 'Active'});
+	res.send({ status: 200, apikey, response: 'Active' });
 });
 
 // LIST A API V1 From Scrapper To Function
@@ -66,9 +57,11 @@ router.get('/husbu', husbu);
 ------------------------------[ PAGE 404 NOT FOUNDS ]-------------------------------------
 ------------------------------------------------------------------------------------------
 */
-router.get('*', async (req, res) => res.status(404).send({
-	status: 404,
-	message: 'Invalid API URL :)',
-}));
+router.get('*', async (req, res) =>
+	res.status(404).send({
+		status: 404,
+		message: 'Invalid API URL :)',
+	})
+);
 
 module.exports = router;

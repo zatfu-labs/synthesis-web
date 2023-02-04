@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const {dbURI} = require('../config');
+const { dbURI } = require('../config');
 
 function connectMongoDb() {
 	mongoose.connect(process.env.dbURI || dbURI, {
