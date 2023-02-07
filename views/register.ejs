@@ -25,7 +25,7 @@
 		<h1 class="h3 mb-3 fw-normal">Register</h1>
 		<%- include('layouts/msg')  %> 
     <%- include('layouts/errors')  %> 
-      <form method="post" action="/register">
+      <form method="post" action="/auth/register">
         <div class="form-floating">
           <input type="text" name="username" class="form-control" id="floatingInput" required/>
           <label for="floatingInput">Username</label>
@@ -43,7 +43,7 @@
         </div>
         <div class="checkbox mb-3">
           <label>
-            Have an account? <a href="/login">Sign in</a>
+            Have an account? <a href="/auth/login">Sign in</a>
           </label>
         </div>
         <button class="w-100 btn btn-lg" type="submit">
