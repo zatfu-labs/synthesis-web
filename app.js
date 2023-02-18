@@ -15,7 +15,6 @@ const authRouter = require('./routes/auth');
 const directRouters = require('./routes/direct');
 const apiRouters = require('./routes/api');
 
-// eslint-disable-next-line no-unused-vars
 const visitor = require('./database/visitsUp');
 const { isAuthenticated } = require('./lib/auth');
 const { connectMongoDb } = require('./database/connect');
@@ -73,6 +72,14 @@ app.get('/', (req, res) => {
 		layout: 'layouts/main',
 	});
 });
+// Test fitur visitor
+app.post('/testviews', (req, res) => {
+	visitor()
+	res.send({
+		status: 200,
+		message: 'Success mas bro :>',
+	})
+})
 
 app.get('/about', (req, res) => {
 	res.render('about', {
@@ -112,6 +119,6 @@ app.get('*', (req, res) => {
 
 app.set('json spaces', 4);
 
-app.listen(process.env.PORT, () => {
-	console.log(`[INFO] App listening at http://localhost:${process.env.PORT}`);
+app.listen(process.env.PORT || 3000, () => {
+	console.log(`[🚀] Website listerning at http://localhost:${process.env.PORT}`);
 });
