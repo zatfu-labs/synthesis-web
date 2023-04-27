@@ -119,6 +119,4 @@ app.get('*', (req, res) => {
 
 app.set('json spaces', 4);
 
-app.listen(process.env.PORT || 3000, () => {
-	console.log(`[🚀] Website listerning at http://localhost:${process.env.PORT}`);
-});
+module.exports = app;

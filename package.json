@@ -1,10 +1,10 @@
 {
   "name": "synthesis-web",
-  "version": "0.0.0",
+  "version": "0.1",
   "private": true,
   "scripts": {
-    "start": "node app",
-    "start:dev": "nodemon app"
+    "start": "node ./bin/www",
+    "start:dev": "set DEBUG=synthesis-web:* && node ./bin/www"
   },
   "dependencies": {
     "axios": "^0.27.2",
@@ -40,7 +40,7 @@
     "prettier": "^2.8.3"
   },
   "description": "MyFirst Project APIs ExpressJS",
-  "main": "app.js",
+  "main": "./bin/www",
   "repository": "https://github.com/Synthesis-Team/synthesis-web.git",
   "author": "Fauzaro01 <MuhamadFauzan4750@gmail.com>",
   "license": "MIT"
