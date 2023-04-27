@@ -36,3 +36,14 @@ async function cekKey(apikey) {
 }
 
 module.exports.cekKey = cekKey;
+
+async function cekLimit(apikey) {
+	const db = await User.findOne({ apikey });
+	if (db === null) {
+		return false;
+	}
+
+	return db.limit
+}
+
+module.exports.cekLimit = cekLimit;
