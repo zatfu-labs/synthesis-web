@@ -1,12 +1,12 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
 
 router.get('/discord', (req, res) => {
-  res.redirect('http://discord.com')
+	res.redirect('http://discord.com');
 });
 
-router.get("*", async (req, res) => {
-  res.redirect('/');
+router.get('*', async (req, res) => {
+	res.redirect('/');
 });
 
 module.exports = router;

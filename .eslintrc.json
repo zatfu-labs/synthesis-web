@@ -1,0 +1,20 @@
+{
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es2021": true,
+        "node": true
+    },
+    "ignorePatterns": ["lib/*", "views/*", "public/*"],
+    "extends": ["xo", "prettier"],
+    "overrides": [
+    ],
+    "parserOptions": {
+        "ecmaVersion": "latest"
+    },
+    "rules": {
+        "new-cap":"off",
+        "camelcase":"off",
+        "object-curly-spacing":"off"
+    }
+}
