@@ -12,7 +12,6 @@ const logger = require('morgan');
 
 const indexRouters = require('./routes/index');
 const authRouter = require('./routes/auth');
-const directRouters = require('./routes/direct');
 const apiRouters = require('./routes/api');
 
 const { isAuthenticated } = require('./lib/auth');
@@ -91,7 +90,6 @@ app.get('/docs', isAuthenticated, async (req, res) => {
 app.use('/', indexRouters);
 app.use('/', authRouter)
 app.use('/api', apiRouters);
-app.use('/direct', directRouters);
 
 app.use((req, res) => {
 	if (res.statusCode === '200') {
