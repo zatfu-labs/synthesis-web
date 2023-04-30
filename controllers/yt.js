@@ -1,4 +1,4 @@
-const { ytPlay, ytMp3, ytMp4 } = require('../lib/youtube');
+const { ytPlay, ytMp3, ytMp4 } = require('../lib/function/youtube');
 const { cekKey } = require('../database/db');
 
 async function youtubePlay(req, res) {
