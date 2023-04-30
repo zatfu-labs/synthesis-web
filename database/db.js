@@ -1,8 +1,7 @@
-const { limitCount } = require('../config');
 const { User } = require('./model');
 
 async function addUser(username, password, apikey) {
-	const obj = { username, password, apikey, defaultKey: apikey, premium: [], limit: limitCount };
+	const obj = { username, password, apikey, defaultKey: apikey, premium: [], limit: 50 };
 	User.create(obj);
 }
 
