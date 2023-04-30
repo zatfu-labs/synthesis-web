@@ -1,9 +1,7 @@
 const mongoose = require('mongoose');
-const { dbURI } = require('../config');
-const debug = require("debug")("synthesis-web:MongoDB")
 
 function connectMongoDb() {
-	mongoose.connect(process.env.dbURI || dbURI, {
+	mongoose.connect(process.env.MONGOURL, {
 		useNewUrlParser: true,
 		useUnifiedTopology: true,
 	});
@@ -11,11 +9,11 @@ function connectMongoDb() {
 	db.on('error', console.error.bind(console, 'connection error:'));
 	if (process.env.NODE_ENV === 'development') {
 		db.on('reconnect', () => {
-		debug('Reconnecting To MongoDB <🔄>')
+		console.log('Reconnecting To MongoDB <🔄>')
 		});
 	} 
 	db.once('open', () => {
-		console.log('[🚀] Database MongoDB Ready!');
+		console.log('[🚀] MongoDB has Ready to use!');
 	});
 }
 
