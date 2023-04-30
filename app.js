@@ -15,7 +15,6 @@ const authRouter = require('./routes/auth');
 const directRouters = require('./routes/direct');
 const apiRouters = require('./routes/api');
 
-const visitor = require('./database/visitsUp');
 const { isAuthenticated } = require('./lib/auth');
 const { connectMongoDb } = require('./database/connect');
 const { getApikey } = require('./database/db');
@@ -72,14 +71,6 @@ app.get('/', (req, res) => {
 		layout: 'layouts/main',
 	});
 });
-// Test fitur visitor
-app.post('/testviews', (req, res) => {
-	visitor()
-	res.send({
-		status: 200,
-		message: 'Success mas bro :>',
-	})
-})
 
 app.get('/about', (req, res) => {
 	res.render('about', {
@@ -98,7 +89,7 @@ app.get('/docs', isAuthenticated, async (req, res) => {
 });
 
 app.use('/', indexRouters);
-app.use('/auth', authRouter)
+app.use('/', authRouter)
 app.use('/api', apiRouters);
 app.use('/direct', directRouters);
 
