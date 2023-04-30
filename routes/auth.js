@@ -2,9 +2,8 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 
-const { recaptcha_key_1, recaptcha_key_2 } = require('../config');
 const Recaptcha = require('express-recaptcha').RecaptchaV2;
-const recaptcha = new Recaptcha(recaptcha_key_1, recaptcha_key_2);
+const recaptcha = new Recaptcha(process.env.RECAPTCHA_KEY_1, process.env.RECAPTCHA_KEY_2);
 
 const { getHashedPassword, randomText } = require('../lib/function');
 const { checkUsername, addUser } = require('../database/db');
