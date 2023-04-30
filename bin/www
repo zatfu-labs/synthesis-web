@@ -4,8 +4,8 @@
  * Module dependencies.
  */
 
+require('dotenv').config();
 var app = require('../app');
-var debug = require('debug')('synthesis-web:WebServer');
 var http = require('http');
 const { hostname } = require('os');
 
@@ -13,7 +13,7 @@ const { hostname } = require('os');
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3000');
+var port = normalizePort(process.env.PORT);
 app.set('port', port);
 
 /**
@@ -63,7 +63,6 @@ function onError(error) {
     ? 'Pipe ' + port
     : 'Port ' + port;
 
-  // handle specific listen errors with friendly messages
   switch (error.code) {
     case 'EACCES':
       console.error(bind + ' requires elevated privileges');
@@ -85,7 +84,7 @@ function onError(error) {
 function onListening() {
   var addr = server.address();
   var bind = typeof addr === 'string'
-    ? 'pipe ' + addr
-    : 'port ' + addr.port;
-  debug(`Website listerning at http://${hostname}:${bind}`);
+    ? 'Pipe ' + addr
+    : 'Port ' + addr.port;
+  console.log(`[✅] Website listerning at http:// ${hostname} ${bind}`);
 }
