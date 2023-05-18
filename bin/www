@@ -86,5 +86,5 @@ function onListening() {
   var bind = typeof addr === 'string'
     ? 'Pipe ' + addr
     : 'Port ' + addr.port;
-  console.log(`[✅] Website listerning at http:// ${hostname} ${bind}`);
+  console.log(`[🚀] Website listerning at http://${hostname}:${addr.port}`);
 }
