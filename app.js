@@ -10,13 +10,11 @@ const MemoryStore = require('memorystore')(session);
 const compression = require('compression');
 const logger = require('morgan');
 
-const indexRouters = require('./routes/index');
+const indexRouter = require("./routes/index");
 const authRouter = require('./routes/auth');
 const apiRouters = require('./routes/api');
 
-const { isAuthenticated } = require('./lib/auth');
 const { connectMongoDb } = require('./database/connect');
-const { getApikey } = require('./database/db');
 
 connectMongoDb();
 
@@ -65,46 +63,10 @@ app.use((req, res, next) => {
 	next();
 });
 
-app.get('/', (req, res) => {
-	res.render('index', {
-		layout: 'layouts/main',
-	});
-});
 
-app.get('/about', (req, res) => {
-	res.render('about', {
-		layout: 'layouts/main',
-	});
-});
-
-app.get('/docs', isAuthenticated, async (req, res) => {
-	const getkey = await getApikey(req.user.id);
-	const { apikey, username } = getkey;
-	res.render('docs', {
-		username,
-		apikey,
-		layout: false,
-	});
-});
-
-app.use('/', indexRouters);
-app.use('/', authRouter)
+app.use('/', indexRouter);
+app.use('/auth', authRouter)
 app.use('/api', apiRouters);
-
-app.use((req, res) => {
-	if (res.statusCode === '200') {
-		res.render('notFound', {
-			layout: false,
-		});
-	}
-});
-
-app.get('*', (req, res) => {
-	res.render('error', {
-		layout: false,
-	});
-	res.status(404);
-});
 
 app.set('json spaces', 4);
 
