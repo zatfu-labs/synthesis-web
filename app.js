@@ -10,7 +10,7 @@ const MemoryStore = require('memorystore')(session);
 const compression = require('compression');
 const logger = require('morgan');
 
-const indexRouter = require("./routes/index");
+const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
 const apiRouters = require('./routes/api');
 
@@ -51,7 +51,7 @@ app.use(cookieParser());
 
 app.use(passport.initialize());
 app.use(passport.session());
-require('./lib/config')(passport);
+require('./config/passport')(passport);
 
 app.use(flash());
 
@@ -63,9 +63,8 @@ app.use((req, res, next) => {
 	next();
 });
 
-
 app.use('/', indexRouter);
-app.use('/auth', authRouter)
+app.use('/auth', authRouter);
 app.use('/api', apiRouters);
 
 app.set('json spaces', 4);

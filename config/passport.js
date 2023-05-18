@@ -1,5 +1,5 @@
 const LocalStrategy = require('passport-local').Strategy;
-const { getHashedPassword } = require('./function');
+const { getHashedPassword } = require('../lib/function');
 const { User } = require('../database/model');
 
 module.exports = function (passport) {
