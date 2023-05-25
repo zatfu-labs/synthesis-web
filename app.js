@@ -67,6 +67,14 @@ app.use('/', indexRouter);
 app.use('/auth', authRouter);
 app.use('/api', apiRouters);
 
+// 404 Handle
+
+// app.get("*", (req , res) => {
+// 	res.render('notFound', {
+// 		layout: false
+// 	})
+// })
+
 app.set('json spaces', 4);
 
 module.exports = app;
