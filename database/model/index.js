@@ -8,6 +8,7 @@ const Users = mongoose.Schema(
 		defaultKey: { type: String },
 		premium: { type: Array },
 		limit: { type: Number },
+		role: { type: String, enum: ['admin', 'member', 'staff'], default: 'member' },
 	},
 	{ versionKey: false }
 );
